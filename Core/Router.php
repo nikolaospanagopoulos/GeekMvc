@@ -7,34 +7,46 @@ class Router
 	protected $routes = [];
 	protected $params = [];
 
+	/**
+	 *Adds a route to the routing table
+	 *@param string $route the route url
+	 *@param array $params the parameters
+	 *
+	 **/
 	public function add($route, $params = [])
 	{
 
 		$route = preg_replace('/\//', '\\/', $route);
-		// echo $route . ',';
-
 		$route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
-
 		$route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
-
-
 		$route = '/^' . $route . '$/i';
-
 		$this->routes[$route] = $params;
-
 		// var_dump($this->routes);
 
 	}
 
-
+	/**
+	 *Get the routes from the routing table
+	 *@return array
+	 **/
 	public function getRoutes()
 	{
 		return $this->routes;
 	}
-
+	/**
+	 *
+	 *Match the route to the routes of the routing table and set the params for each route
+	 *@param string $url the url of the route
+	 *@param array $params the url params
+	 *@return boolean true if matched, false otherwise
+	 **/
 	public function match($url)
 	{
 		foreach ($this->routes as $route => $params) {
+			//passing null to preg match is deprecated
+			if ($url == null) {
+				$url = '';
+			}
 			if (preg_match($route, $url, $matches)) {
 
 				foreach ($matches as $key => $match) {
@@ -79,6 +91,11 @@ class Router
 			throw new \Exception("route doesn't match");
 		}
 	}
+	/**
+	 *Removes the Query parameters from the url
+	 *@param string $url
+	 *@return string
+	 **/
 	protected function removeQueryStringVariables($url)
 	{
 
@@ -92,16 +109,35 @@ class Router
 			return $url;
 		}
 	}
-
+	/**
+	 *
+	 * convert the string to studly caps
+	 * ex admin-post to AdminPost
+	 * @param string $string the string to modify
+	 * @return string
+	 **/
 	protected function convertToStudlyCaps($string)
 	{
 		return str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));
 	}
 
+	/**
+	 * convert the string to camel case
+	 * ex add-new to addNew
+	 * @param string $string the string to modify
+	 * @return string
+	 **/
 	protected function convertToCamelCase($string)
 	{
 		return lcfirst($this->convertToStudlyCaps($string));
 	}
+
+	/**
+	 *Get the parametes of matched route from the routing table
+	 *@return array $params 
+	 *
+	 **/
+
 	public function getParams()
 	{
 		return $this->params;

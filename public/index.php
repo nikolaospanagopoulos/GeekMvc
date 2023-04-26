@@ -1,14 +1,31 @@
 <?php
+//todo remove in production
+session_save_path("/tmp");
+session_start();
 
+use Core\Database;
 use Core\Router;
 
 require_once __DIR__ . '/../vendor/autoload.php';
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-
-
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
 $router = new Router();
 
+$config = [
+	'dsn' => $_ENV['DB_DSN'],
+	'user' => $_ENV['DB_USER'],
+	'password' => $_ENV['DB_PASSWORD'],
+];
+$db  = Database::getDb($config);
+
+
+$router->add('', ['controller' => "Home", 'action' => 'index']);
 $router->add('{controller}/{action}');
+$router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
 $router->add('{controller}/{id:\d+}/{action}');
 $router->add('{controller}/{id:\d+}/{action}/{idex:\d+}/{actionx}');
 
@@ -33,9 +50,4 @@ function getServerQueryString()
 }
 
 $uri = getServerQueryString();
-echo $uri;
-if ($router->match($uri)) {
-	echo "<pre>";
-	var_dump($router->getParams());
-	echo "</pre>";
-}
+$router->dispatch($uri);

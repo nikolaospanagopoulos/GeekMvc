@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\App;
 
 class Config
 {
@@ -14,5 +14,5 @@ class Config
 define('PROTOCOL', strpos(strtolower($_SERVER['SERVER_PROTOCOL']), 'https') === FALSE ? 'http' : 'https');
 define(
 	'MAIN_URL',
-	\App\Config::protocol . '://' . $_SERVER['HTTP_HOST'] . "/"
+	\App\App\Config::protocol . '://' . $_SERVER['HTTP_HOST'] . "/"
 );

@@ -3,8 +3,8 @@
 session_save_path("/tmp");
 session_start();
 
-use Core\Database;
-use Core\Router;
+use App\Core\Database;
+use App\Core\Router;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 ini_set('display_errors', 1);
@@ -21,7 +21,6 @@ $config = [
 	'password' => $_ENV['DB_PASSWORD'],
 ];
 $db  = Database::getDb($config);
-
 
 $router->add('', ['controller' => "Home", 'action' => 'index']);
 $router->add('{controller}/{action}');

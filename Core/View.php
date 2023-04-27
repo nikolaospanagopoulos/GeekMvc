@@ -1,11 +1,9 @@
 <?php
 
 
-namespace Core;
+namespace App\Core;
 
-use App\Auth;
-use App\Config;
-use App\Flash;
+use App\App\Config;
 
 class View
 {

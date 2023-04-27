@@ -1,6 +1,6 @@
 <?php
 
-namespace Core;
+namespace App\Core;
 
 class Router
 {
@@ -146,7 +146,7 @@ class Router
 	protected function getNamespace()
 	{
 
-		$namespace = "App\Controllers\\";
+		$namespace = "App\App\Controllers\\";
 
 		if (array_key_exists('namespace', $this->params)) {
 

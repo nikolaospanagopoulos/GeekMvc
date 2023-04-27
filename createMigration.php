@@ -8,15 +8,17 @@ function createFileAndWrite($filename, $type)
 {
 	$timestamp = time();
 	$myfile = fopen("./migrations/" . $filename . $type . $timestamp . ".php", "w") or die("Unable to open file!");
-	$txt = "<?php
-
-class migration" . $filename . $type . $timestamp . "
+	$txt = '<?php
+use App\Core\Database;
+class migration' . $filename . $type . $timestamp . '
 {
-	public function $type()
+	public function ' . $type . '()
 	{
+		$db = Database::$db;
+         //write your query here
 	}
 }
-";
+';
 	fwrite($myfile, $txt);
 	fclose($myfile);
 	echo "file created successfully \n";

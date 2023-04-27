@@ -4,25 +4,23 @@ if (!isset($argv[1])) {
 	die("Please add a migration name");
 }
 $x = $argv[1];
-function createFileAndWrite($filename)
+function createFileAndWrite($filename, $type)
 {
 	$timestamp = time();
-	$myfile = fopen("./migrations/" . $filename . $timestamp . ".php", "w") or die("Unable to open file!");
+	$myfile = fopen("./migrations/" . $filename . $type . $timestamp . ".php", "w") or die("Unable to open file!");
 	$txt = "<?php
 
-class migration" . $filename . $timestamp . "
+class migration" . $filename . $type . $timestamp . "
 {
-	public function up()
-	{
-	}
-	public function down()
+	public function $type()
 	{
 	}
 }
 ";
 	fwrite($myfile, $txt);
 	fclose($myfile);
-	echo "file created successfully ";
+	echo "file created successfully \n";
 }
 
-createFileAndWrite($x);
+createFileAndWrite($x, "up");
+createFileAndWrite($x, "down");

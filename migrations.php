@@ -2,6 +2,10 @@
 
 use App\Core\Database;
 
+if (!isset($argv[1])) {
+	die("Please add a migration type: up or down");
+}
+$x = $argv[1];
 require_once __DIR__ . '/vendor/autoload.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -15,4 +19,9 @@ $config = [
 	'password' => $_ENV['DB_PASSWORD'],
 ];
 $db  = Database::getDb($config);
-Database::applyMigrations();
+if ($argv[1] == 'up') {
+	Database::applyMigrations();
+}
+if ($argv[1] == 'down') {
+	Database::applyDownMigrations();
+}

@@ -25,6 +25,31 @@ class Database
 		$statement->execute();
 		return $statement->fetchAll(PDO::FETCH_COLUMN);
 	}
+	public static function applyDownMigrations()
+	{
+		$files = scandir(dirname(__DIR__) . "/migrations");
+		foreach ($files as $migration) {
+			if ($migration === "." || $migration === "..") {
+				continue;
+			}
+			require_once dirname(__DIR__) . "/migrations/" . $migration;
+			$className = "migration" . pathinfo($migration, PATHINFO_FILENAME);
+			$instance = new $className();
+			if (str_contains($className, "up")) {
+				continue;
+			}
+			echo "applying down migration " . $className . PHP_EOL;
+			$instance->down();
+			echo "applied down migration " . $className . PHP_EOL;
+		}
+		self::emptyMigrationsTable();
+	}
+	public static function emptyMigrationsTable()
+	{
+		self::$db->exec(
+			"TRUNCATE TABLE migrations;"
+		);
+	}
 	public static function applyMigrations()
 	{
 		self::createMigrationTable();
@@ -40,6 +65,9 @@ class Database
 			require_once dirname(__DIR__) . "/migrations/" . $migration;
 			$className = "migration" . pathinfo($migration, PATHINFO_FILENAME);
 			$instance = new $className();
+			if (str_contains($className, "down")) {
+				continue;
+			}
 			echo "applying migration " . $className . PHP_EOL;
 			$instance->up();
 			echo "applied migration " . $className . PHP_EOL;

@@ -10,6 +10,12 @@ abstract class Controller
 	{
 		$this->routeParams = $routeParams;
 	}
+	/**
+	 *We use the __call magic method to call functions that dont exist directly
+	 *We do that for security
+	 *And to be able to call the before and after methods
+
+	 **/
 	public function __call($name, $arguments)
 	{
 		$method = $name . 'Action';

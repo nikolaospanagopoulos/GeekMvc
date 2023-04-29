@@ -5,20 +5,25 @@ namespace App\App\Controllers;
 
 use App\Core\Controller;
 use App\Core\View;
-
+use App\App\Models\Home as ModelsHome;
 
 class Home extends Controller
 {
 
 
-
+	/**
+	 *Shows our home page
+	 *@return void
+	 **/
 	public function indexAction()
 	{
+		$message = ModelsHome::getWelcomeMessage();
 		View::render('base.php', [
 			'title' => "Home",
 			'template' => "Home/index.php",
 			'scripts' => ['js/Home.js'],
-			'cssFiles' => ['css/home.css']
+			'cssFiles' => ['css/home.css'],
+			"message" => $message->post
 		]);
 	}
 	/**

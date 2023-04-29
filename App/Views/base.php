@@ -31,12 +31,6 @@
 </head>
 
 <body>
-	<header>Header Info</header>
-	<?php
-
-
-
-	?>
 
 	<?php include($template);
 

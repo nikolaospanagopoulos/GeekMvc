@@ -8,7 +8,7 @@ class Database
 {
 	public static PDO $db;
 
-	public static function getDb($config)
+	public static function setDb($config)
 	{
 
 		$dsn = $config['dsn'] ?? '';
@@ -17,6 +17,10 @@ class Database
 		$pdo = new PDO($dsn, $user, $password);
 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		self::$db = $pdo;
+		return self::$db;
+	}
+	public static function getDb()
+	{
 		return self::$db;
 	}
 	public static function getAppliedMigrations()

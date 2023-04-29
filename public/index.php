@@ -11,6 +11,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+set_error_handler('App\Core\Error::errorHandler');
+set_exception_handler('App\Core\Error::exceptionHandler');
+
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 $router = new Router();
@@ -20,7 +23,7 @@ $config = [
 	'user' => $_ENV['DB_USER'],
 	'password' => $_ENV['DB_PASSWORD'],
 ];
-$db  = Database::getDb($config);
+$db  = Database::setDb($config);
 
 $router->add('', ['controller' => "Home", 'action' => 'index']);
 $router->add('{controller}/{action}');

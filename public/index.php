@@ -1,6 +1,10 @@
 <?php
 //todo remove in production
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+    echo 'This is a server using Windows!';
+} else {
 session_save_path("/tmp");
+}
 session_start();
 
 use App\Core\Database;

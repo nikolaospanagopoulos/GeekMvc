@@ -18,7 +18,7 @@ $config = [
 	'user' => $_ENV['DB_USER'],
 	'password' => $_ENV['DB_PASSWORD'],
 ];
-$db  = Database::getDb($config);
+$db  = Database::setDb($config);
 if ($argv[1] == 'up') {
 	Database::applyMigrations();
 }

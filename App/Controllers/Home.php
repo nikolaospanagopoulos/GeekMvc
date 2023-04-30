@@ -18,7 +18,7 @@ class Home extends Controller
 	public function indexAction()
 	{
 		$message = ModelsHome::getWelcomeMessage();
-		View::render('base.php', [
+		View::render('base/base.php', [
 			'title' => "Home",
 			'template' => "Home/index.php",
 			'scripts' => ['js/Home.js'],

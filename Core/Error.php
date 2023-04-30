@@ -36,7 +36,7 @@ class Error
 		http_response_code($code);
 		if ($_ENV["SHOW_ERRORS"] == true) {
 
-			View::render('base.php', [
+			View::render('base/base.php', [
 				'title' => "error",
 				'template' => "Errors/FullError.php",
 				'statusCode' => $code,
@@ -49,7 +49,7 @@ class Error
 			]);
 		} else {
 
-			View::render('base.php', [
+			View::render('base/base.php', [
 				'title' => "error",
 				'template' => "Errors/clientError.php",
 				'statusCode' => $code,

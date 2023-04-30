@@ -14,8 +14,8 @@
 			}
 			?> </title>
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 	<?php if (isset($cssFiles) && count($cssFiles) > 0) {
 		foreach ($cssFiles as $css)
 			echo "<link rel='stylesheet' href='" . $mainUrl . $css . "'>";
@@ -31,10 +31,10 @@
 </head>
 
 <body>
+	<?php include_once("header.php");     ?>
 
-	<?php include($template);
+	<?php include(dirname(__DIR__) . '/' . $template);
 
-	echo $_SERVER["DOCUMENT_ROOT"];
 	?>
 
 	<footer>

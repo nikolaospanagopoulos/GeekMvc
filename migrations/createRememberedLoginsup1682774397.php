@@ -1,6 +1,6 @@
 <?php
 
-use App\Core\Database;
+use Main\Core\Database;
 
 class migrationcreateRememberedLoginsup1682774397
 {

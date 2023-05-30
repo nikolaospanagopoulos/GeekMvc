@@ -1,6 +1,6 @@
 <?php
 
-use App\Core\Database;
+use Main\Core\Database;
 
 if (!isset($argv[1])) {
 	die("Please add a migration type: up or down");

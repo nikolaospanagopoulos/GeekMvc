@@ -1,11 +1,11 @@
 <?php
 
 
-namespace App\App\Controllers;
+namespace Main\App\Controllers;
 
-use App\Core\Controller;
-use App\Core\View;
-use App\App\Models\Home as ModelsHome;
+use Main\Core\Controller;
+use Main\Core\View;
+use Main\App\Models\Home as ModelsHome;
 
 class Home extends Controller
 {

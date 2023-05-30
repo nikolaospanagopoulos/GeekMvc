@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Core;
+namespace Main\Core;
 
-use App\App\Config;
+use Main\App\Config;
 
 class View
 {

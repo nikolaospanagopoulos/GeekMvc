@@ -1,8 +1,8 @@
 <?php
 
-namespace App\App\Models;
+namespace Main\App\Models;
 
-use App\Core\Database;
+use Main\Core\Database;
 use PDO;
 
 class Home extends Database

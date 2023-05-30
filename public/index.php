@@ -7,16 +7,16 @@ if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
 }
 session_start();
 
-use App\Core\Database;
-use App\Core\Router;
+use Main\Core\Database;
+use Main\Core\Router;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-set_error_handler('App\Core\Error::errorHandler');
-set_exception_handler('App\Core\Error::exceptionHandler');
+set_error_handler('Main\Core\Error::errorHandler');
+set_exception_handler('Main\Core\Error::exceptionHandler');
 
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
@@ -30,6 +30,7 @@ $config = [
 $db  = Database::setDb($config);
 
 $router->add('', ['controller' => "Home", 'action' => 'index']);
+$router->add('signup', ['controller' => "Signup", 'action' => 'index']);
 $router->add('{controller}/{action}');
 $router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
 $router->add('{controller}/{id:\d+}/{action}');

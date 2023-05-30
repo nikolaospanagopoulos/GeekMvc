@@ -1,6 +1,6 @@
 <?php
 
-use App\Core\Database;
+use Main\Core\Database;
 
 class migrationexampleup1682725822
 {
@@ -11,8 +11,8 @@ class migrationexampleup1682725822
 			id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             post VARCHAR(255) NOT NULL
 			)";
-$query = $db->prepare($stmt);
-$query->execute();
+		$query = $db->prepare($stmt);
+		$query->execute();
 		$db->exec("INSERT INTO example(post) VALUES('example');");
 	}
 }

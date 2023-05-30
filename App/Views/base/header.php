@@ -8,7 +8,7 @@
 		<div class="collapse navbar-collapse top_nav" id="navbarSupportedContent">
 			<ul class="navbar-nav mx-auto ">
 				<li class="nav-item">
-					<a href="#" class="nav-link">Home</a>
+					<a href="/" class="nav-link">Home</a>
 					<hr class="hr_nav">
 				</li>
 				<li class="nav-item "><a href="#" class="nav-link">About Us</a>
@@ -25,9 +25,9 @@
 					</button>
 				</li>
 				<li>
-					<button class="btn sign_btn">
+					<a href="/signup" class="btn sign_btn">
 						SignUp
-					</button>
+					</a>
 				</li>
 			</ul>
 		</div>

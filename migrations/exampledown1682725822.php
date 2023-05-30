@@ -1,6 +1,6 @@
 <?php
 
-use App\Core\Database;
+use Main\Core\Database;
 
 class migrationexampledown1682725822
 {

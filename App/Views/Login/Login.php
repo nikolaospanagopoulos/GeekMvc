@@ -15,40 +15,23 @@
 
 
 
+
 	<h2 class="text-center mb-3">Sign up</h2>
-	<form id="signup-form" method="post" action="/signup/create">
-		<div class="mb-3">
-			<label for="inputName" class="form-label">Name</label>
-			<input name="name" type="text" class="form-control" value="<?php echo (isset($user->name) ? $user->name : "") ?>" id="inputName">
-		</div>
-		<div class="mb-3">
-			<label for="inputUsername" class="form-label">Username</label>
-			<input name="username" type="text" value="<?php echo (isset($user->username) ? $user->username : "") ?>" class="form-control" id="inputUsername">
-		</div>
+	<form id="login-form" method="post" action="/login/create" autocomplete="off">
 		<div class="mb-3">
 			<label for="inputEmail1" class="form-label">Email address</label>
-			<input type="text" class="form-control" name="email" id="inputEmail1" value="<?php echo (isset($user->email) ? $user->email : "") ?>" aria-describedby="emailHelp">
+			<input autocomplete="off" type="email" class="form-control" name="email" id="inputEmail1" value="<?php echo (isset($email) ? $email : "") ?>" aria-describedby="emailHelp">
 			<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
 		</div>
 		<div class="mb-3">
 			<label for="inputPassword" class="form-label">Password</label>
-			<input name="password" type="password" class="form-control" id="inputPassword">
-		</div>
-		<div class="mb-3">
-			<label for="inputPasswordConfirmation" class="form-label">Password Confirmation</label>
-			<input name="passwordConfirmation" type="password" class="form-control" id="inputPasswordConfirmation">
+			<input name="password" type="password" autocomplete="off" class="form-control" id="inputPassword">
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 
 	<script>
 		var constraints = {
-			name: {
-				presence: true
-			},
-			username: {
-				presence: true,
-			},
 			email: {
 				email: true,
 				presence: true
@@ -60,13 +43,10 @@
 					message: "must be at least 6 characters"
 				}
 			},
-			passwordConfirmation: {
-				equality: "password"
-			}
 		};
 
 
-		var form = document.querySelector('#signup-form')
+		var form = document.querySelector('#login-form')
 		form.addEventListener('submit', function(e) {
 
 			e.preventDefault()
@@ -84,11 +64,8 @@
 
 			const formValues = validate.collectFormValues(form)
 			const errors = validate({
-				name: formValues.name,
-				username: formValues.username,
 				password: formValues.password,
 				email: formValues.email,
-				passwordConfirmation: formValues.passwordConfirmation
 
 
 			}, constraints)

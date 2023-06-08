@@ -20,13 +20,13 @@
 			</ul>
 			<ul class="navbar navbar-nav navbar-right" style="display:flex;">
 				<li>
-					<button class="btn top_login">
+					<a href="/login" class="btn sign_btn">
 						Login
-					</button>
+					</a>
 				</li>
 				<li>
 					<a href="/signup" class="btn sign_btn">
-						SignUp
+						Register
 					</a>
 				</li>
 			</ul>

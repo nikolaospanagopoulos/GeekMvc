@@ -2,6 +2,8 @@
 
 namespace Main\Core;
 
+use Main\App\Config;
+
 abstract class Controller
 {
 	protected $routeParams = [];
@@ -28,6 +30,20 @@ abstract class Controller
 			throw new \Exception("Method not found in controller");
 		}
 	}
+
+	/**
+	 * Redirect to a url
+	 *
+	 * @param   string  $url  the url to redirect to
+	 * @return void
+	 * */
+	public function redirect($url)
+	{
+		header('Location: ' . Config::mainUrl . $url, true, 303);
+	}
+
+
+
 	/**
 	 *Runs before the action
 	 *if returns false, action will not be executed

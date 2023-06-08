@@ -31,6 +31,7 @@ $db  = Database::setDb($config);
 
 $router->add('', ['controller' => "Home", 'action' => 'index']);
 $router->add('signup', ['controller' => "Signup", 'action' => 'index']);
+$router->add('login', ['controller' => "Login", 'action' => 'index']);
 $router->add('{controller}/{action}');
 $router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
 $router->add('{controller}/{id:\d+}/{action}');
